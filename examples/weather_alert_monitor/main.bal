@@ -5,7 +5,7 @@ import ballerinax/interzoid.weatherzip;
 
 configurable string license = ?;
 configurable string zipCodes = ?;
-configurable int maxWindMph = 25;
+configurable decimal maxWindMph = 25;
 configurable decimal minTempF = 20;
 
 public function main() returns error? {
@@ -20,7 +20,7 @@ public function main() returns error? {
         if windValue is () || tempValue is () {
             return error(string `Weather lookup for ${zip} returned no wind or temperature data`);
         }
-        int windMph = check int:fromString(windValue);
+        decimal windMph = check decimal:fromString(windValue);
         decimal tempF = check decimal:fromString(tempValue);
 
         if windMph > maxWindMph {
